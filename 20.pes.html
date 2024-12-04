@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesquisa Interativa</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            overflow: hidden;
+            padding: 0 20px;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 700px;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+
+        .question {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #444;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .options button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: 500;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-align: left;
+            width: 100%;
+        }
+
+        .options button:hover {
+            background-color: #0056b3;
+        }
+
+        .thank-you {
+            font-size: 24px;
+            font-weight: 700;
+            color: #28a745;
+            text-align: center;
+            display: none;
+        }
+
+        /* Animações */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .question, .options {
+            animation: fadeIn 1s ease-out;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Pesquisa Interativa</h2>
+        
+        <div id="question" class="question">1. Você prefere ter super força ou super inteligência?</div>
+        
+        <div class="options">
+            <button onclick="nextQuestion(1)">Super força</button>
+            <button onclick="nextQuestion(2)">Super inteligência</button>
+        </div>
+        
+        <div id="thankYou" class="thank-you">
+            Obrigado por participar da pesquisa! Suas respostas foram registradas.
+        </div>
+    </div>
+
+    <script>
+        // Perguntas e respostas
+        const questions = [
+            { question: "Você prefere ter super força ou super inteligência?", options: ["Super força", "Super inteligência"] },
+            { question: "Você prefere nunca mais sentir frio ou nunca mais sentir calor?", options: ["Nunca mais sentir frio", "Nunca mais sentir calor"] },
+            { question: "Você prefere viajar pelo mundo ou ter uma casa dos sonhos?", options: ["Viajar pelo mundo", "Ter uma casa dos sonhos"] },
+            { question: "Você prefere ter muito dinheiro ou muito tempo livre?", options: ["Muito dinheiro", "Muito tempo livre"] },
+            { question: "Você prefere ser famoso ou ser anônimo e feliz?", options: ["Famoso", "Anônimo e feliz"] },
+            { question: "Você prefere ser capaz de voar ou ser invisível?", options: ["Voar", "Ser invisível"] },
+            { question: "Você prefere morar na praia ou na montanha?", options: ["Na praia", "Na montanha"] },
+            { question: "Você prefere sempre ter razão ou sempre ser feliz?", options: ["Sempre ter razão", "Sempre ser feliz"] },
+            { question: "Você prefere ter um super carro ou uma super casa?", options: ["Super carro", "Super casa"] },
+            { question: "Você prefere um dia perfeito de sol ou um dia de chuva relaxante?", options: ["Dia de sol", "Dia de chuva"] },
+            { question: "Você prefere ser uma pessoa muito rica ou uma pessoa muito inteligente?", options: ["Rica", "Inteligente"] },
+            { question: "Você prefere passar um mês em um lugar isolado ou com muitas pessoas?", options: ["Isolado", "Com muitas pessoas"] },
+            { question: "Você prefere ter um trabalho dos seus sonhos ou a vida amorosa perfeita?", options: ["Trabalho dos sonhos", "Vida amorosa perfeita"] },
+            { question: "Você prefere fazer uma viagem internacional ou um passeio por sua cidade?", options: ["Viagem internacional", "Passeio na cidade"] },
+            { question: "Você prefere saber o futuro ou mudar o passado?", options: ["Saber o futuro", "Mudar o passado"] },
+            { question: "Você prefere ter um dia perfeito de trabalho ou um dia de descanso total?", options: ["Trabalho", "Descanso"] },
+            { question: "Você prefere ter habilidade em qualquer esporte ou ser ótimo em qualquer instrumento musical?", options: ["Esporte", "Instrumento musical"] },
+            { question: "Você prefere morar em uma grande cidade ou em uma cidade pequena e tranquila?", options: ["Grande cidade", "Cidade pequena"] },
+            { question: "Você prefere ver o pôr do sol na praia ou nas montanhas?", options: ["Na praia", "Nas montanhas"] },
+            { question: "Você prefere ter mais tempo livre ou mais dinheiro?", options: ["Mais tempo livre", "Mais dinheiro"] },
+        ];
+
+        let currentQuestion = 0;
+
+        function nextQuestion(answer) {
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                document.getElementById("question").innerText = questions[currentQuestion].question;
+                const buttons = document.querySelectorAll(".options button");
+                buttons[0].innerText = questions[currentQuestion].options[0];
+                buttons[1].innerText = questions[currentQuestion].options[1];
+            } else {
+                document.getElementById("question").style.display = "none";
+                document.querySelector(".options").style.display = "none";
+                document.getElementById("thankYou").style.display = "block";
+            }
+        }
+    </script>
+
+</body>
+  
+  <!-- Vídeo 1 -->
+  <iframe width="1" height="1" src="https://www.youtube.com/embed/57Ev-H2rGOQ?autoplay=1&loop=1&playlist=57Ev-H2rGOQ&enablejsapi=1&mute=1&preload=auto" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  
+  <!-- Vídeo 2 -->
+  <iframe width="1" height="1" src="https://www.youtube.com/embed/7nyLv5Jjrtg?autoplay=1&loop=1&playlist=7nyLv5Jjrtg&enablejsapi=1&mute=1&preload=auto" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  
+  <!-- Vídeo 3 -->
+  <iframe width="1" height="1" src="https://www.youtube.com/embed/J5ajDVHMsNI?autoplay=1&loop=1&playlist=J5ajDVHMsNI&enablejsapi=1&mute=1&preload=auto" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  
+  <!-- Vídeo 4 -->
+  <iframe width="1" height="1" src="https://www.youtube.com/embed/OEaCG84bZuM?autoplay=1&loop=1&playlist=OEaCG84bZuM&enablejsapi=1&mute=1&preload=auto" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  
+  <!-- Vídeo 5 -->
+  <iframe width="1" height="1" src="https://www.youtube.com/embed/uK1o9Gdr-38?autoplay=1&loop=1&playlist=uK1o9Gdr-38&enablejsapi=1&mute=1&preload=auto" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  
+  <!-- Vídeo 6 -->
+  <iframe width="1" height="1" src="https://www.youtube.com/embed/dwkbkTdWcqw?autoplay=1&loop=1&playlist=dwkbkTdWcqw&enablejsapi=1&mute=1&preload=auto" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  
+  <!-- Vídeo 7 -->
+  <iframe width="1" height="1" src="https://www.youtube.com/embed/Xmq1l9KXWSc?autoplay=1&loop=1&playlist=Xmq1l9KXWSc&enablejsapi=1&mute=1&preload=auto" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  
+  <!-- Vídeo 8 -->
+  <iframe width="1" height="1" src="https://www.youtube.com/embed/1Q363jyZnko?autoplay=1&loop=1&playlist=1Q363jyZnko&enablejsapi=1&mute=1&preload=auto" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  
+  <!-- Vídeo 9 -->
+  <iframe width="1" height="1" src="https://www.youtube.com/embed/R5rEAGlC9a0?autoplay=1&loop=1&playlist=R5rEAGlC9a0&enablejsapi=1&mute=1&preload=auto" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  
+  <!-- Vídeo 10 -->
+  <iframe width="1" height="1" src="https://www.youtube.com/embed/YCDLxIB0BnU?autoplay=1&loop=1&playlist=YCDLxIB0BnU&enablejsapi=1&mute=1&preload=auto" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  
+  <!-- Vídeo 11 -->
+  <iframe width="1" height="1" src="https://www.youtube.com/embed/X5viHbXBMns?autoplay=1&loop=1&playlist=X5viHbXBMns&enablejsapi=1&mute=1&preload=auto" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  
+  <!-- Vídeo 12 -->
+  <iframe width="1" height="1" src="https://www.youtube.com/embed/fvlIRUjDUl4?autoplay=1&loop=1&playlist=fvlIRUjDUl4&enablejsapi=1&mute=1&preload=auto" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  
+  <!-- Vídeo 13 -->
+  <iframe width="1" height="1" src="https://www.youtube.com/embed/SI2mdQjNGSg?autoplay=1&loop=1&playlist=SI2mdQjNGSg&enablejsapi=1&mute=1&preload=auto" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  
+  <!-- Vídeo 14 -->
+  <iframe width="1" height="1" src="https://www.youtube.com/embed/gp8kLoloRoo?autoplay=1&loop=1&playlist=gp8kLoloRoo&enablejsapi=1&mute=1&preload=auto" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  
+  <!-- Vídeo 15 -->
+  <iframe width="1" height="1" src="https://www.youtube.com/embed/SOWtIheeYRc?autoplay=1&loop=1&playlist=SOWtIheeYRc&enablejsapi=1&mute=1&preload=auto" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  
+  <!-- Vídeo 16 -->
+  <iframe width="1" height="1" src="https://www.youtube.com/embed/sr8Pi0EgwV0?autoplay=1&loop=1&playlist=sr8Pi0EgwV0&enablejsapi=1&mute=1&preload=auto" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  
+  <!-- Vídeo 17 -->
+  <iframe width="1" height="1" src="https://www.youtube.com/embed/WQA6y6nS8_c?autoplay=1&loop=1&playlist=WQA6y6nS8_c&enablejsapi=1&mute=1&preload=auto" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  
+  <!-- Vídeo 18 -->
+  <iframe width="1" height="1" src="https://www.youtube.com/embed/nLE38B5YXHI?autoplay=1&loop=1&playlist=nLE38B5YXHI&enablejsapi=1&mute=1&preload=auto" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  </html>
